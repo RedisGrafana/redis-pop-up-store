@@ -15,6 +15,50 @@ The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-i
 
 ![Pop-up](https://github.com/mikhailredis/redis-pop-up-store/blob/master/images/pop-up.gif)
 
+## How it works
+
+![Diagram](https://github.com/mikhailredis/redis-pop-up-store/blob/master/images/pop-up.png)
+
+- Node.js script add random data to Customers and Orders streams
+- RedisGears is using `StreamReader` watching all `queue:` keys and adding Time-Series samples
+
+```
+# Add Time-Series
+def tsAdd(x):
+   xlen = execute('XLEN', x['key'])
+   execute('TS.ADD', 'ts:len:'+x['key'], '*', xlen)
+   execute('TS.ADD', 'ts:enqueue:' + x['key'], '*', x['value'])
+
+
+# Stream Reader for any Queue
+gb = GearsBuilder('StreamReader')
+gb.countby(lambda x: x['key']).map(tsAdd)
+gb.register(prefix='queue:*', duration=5000, batch=10000, trimStream=False)
+```
+
+- Another RedisGears script completes orders
+  - adding data to `queue:complete` stream
+  - deleting client's ordering
+  - decreasing product amount
+  - trimming Orders queue
+
+```
+# Complete order
+def complete(x):
+    execute('XADD', 'queue:complete', '*', 'order', x['id'],
+            'customer', x['value']['customer'])
+    execute('XDEL', 'queue:customers', x['value']['customer'])
+    execute('DECR', 'product')
+
+
+# Stream Reader for Orders queue
+gb = GearsBuilder('StreamReader')
+gb.map(complete)
+gb.register(prefix='queue:orders', batch=3, trimStream=True)
+```
+
+- Grafana query streams and Time-Series keys every 5 seconds to display samples using Grafana Redis Datasource.
+
 ## What is displayed on Grafana dashboard
 
 - `Product Available` - the value of `product` key
@@ -39,42 +83,7 @@ For detailed instructions please take a look at [redismod - a Docker image with 
 npm start:docker
 ```
 
-## RedisGears scripts
-
-- Visualize queues using RedisTimeSeries
-
-```
-# Add Time-Series
-def tsAdd(x):
-    xlen = execute('XLEN', x['key'])
-    execute('TS.ADD', 'ts:len:'+x['key'], '*', xlen)
-    execute('TS.ADD', 'ts:enqueue:' + x['key'], '*', x['value'])
-
-
-# Stream Reader for any Queue
-gb = GearsBuilder('StreamReader')
-gb.countby(lambda x: x['key']).map(tsAdd)
-gb.register(prefix='queue:*', duration=5000, batch=10000, trimStream=False)
-```
-
-- Complete orders using `queue:complete` stream
-
-```
-# Complete order
-def complete(x):
-    execute('XADD', 'queue:complete', '*', 'order', x['id'],
-            'customer', x['value']['customer'])
-    execute('XDEL', 'queue:customers', x['value']['customer'])
-    execute('DECR', 'product')
-
-
-# Stream Reader for Orders queue
-gb = GearsBuilder('StreamReader')
-gb.map(complete)
-gb.register(prefix='queue:orders', batch=3, trimStream=True)
-```
-
-### Register [StreamReaders](https://oss.redislabs.com/redisgears/readers.html#streamreader)
+## Register [StreamReaders](https://oss.redislabs.com/redisgears/readers.html#streamreader)
 
 Install Readers to add Time-Series and complete orders
 
