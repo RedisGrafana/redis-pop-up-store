@@ -258,7 +258,7 @@
         "y": 3
       },
       "id": 11,
-      "title": "Clients",
+      "title": "Customers",
       "type": "row"
     },
     {
@@ -312,7 +312,7 @@
           "bucket": "5000",
           "command": "ts.range",
           "key": "ts:enqueue:queue:customers",
-          "legend": "Clients",
+          "legend": "Customers",
           "query": "",
           "refId": "A",
           "type": "timeSeries"
@@ -409,7 +409,7 @@
         {
           "command": "ts.range",
           "key": "ts:len:queue:customers",
-          "legend": "Clients",
+          "legend": "Customers",
           "query": "",
           "refId": "A",
           "type": "timeSeries"
@@ -615,7 +615,7 @@
         {
           "command": "ts.range",
           "key": "ts:enqueue:queue:complete",
-          "legend": "Completed",
+          "legend": "Orders",
           "query": "",
           "refId": "A",
           "type": "timeSeries"
