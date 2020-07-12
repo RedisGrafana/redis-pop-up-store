@@ -13,37 +13,31 @@
 
 ## Description
 
-The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) to visualize sale progress in Grafana with [Grafana Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource).
-
-## Pop-up store rules
-
-- Every customer can submit only one order.
-- Orders are processing in batches.
-- When orders processed number of product decrease.
+The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and Grafana with [Grafana Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize sale progress.
 
 ## What is displayed on Grafana dashboard
 
 - `Product Available` - the value of `product` key
 - `Customers Ordering` - length of `queue:customers`
 - `Orders Processing` - length of `queue:orders`
-- `Orders Completes` - length of `queue:complete`
+- `Orders Completed` - length of `queue:complete`
 - `Customers Overflow` - the difference between customer submitted orders and orders completed
-- `Customers Ordering` - change of `queue:customers` length over time
-- `Orders In Queue` - change of `queue:orders` length over time
-- `Completed Flow` - how many orders processed per interval over time
+- `Customers Ordering` - change of `queue:customers` length
+- `Orders In Queue` - change of `queue:orders` length
+- `Completed Flow` - how many orders processed
 
 ## Requirements
 
-- Docker to start Redis and Grafana.
-- Node.js to run simulation script.
+- [Docker](https://docker.com) to start Redis and Grafana.
+- [Node.js](https://nodejs.org) to run simulation script.
 
-## Start Redis with RedisTimeSeries and RedisGears modules installed
-
-```
-docker-compose up
-```
+## Start Redis with RedisTimeSeries and RedisGears modules installed and Grafana
 
 For detailed instructions please take a look at [redismod - a Docker image with select Redis Labs modules](https://hub.docker.com/r/redislabs/redismod).
+
+```
+npm start:docker
+```
 
 ## RedisGears scripts
 
@@ -82,30 +76,24 @@ gb.register(prefix='queue:orders', batch=3, trimStream=True)
 
 ### Register [StreamReaders](https://oss.redislabs.com/redisgears/readers.html#streamreader)
 
-- Install Reader to add Time-Series
+Install Readers to add Time-Series and complete orders
 
 ```
-cat gears/timeseries.py | docker exec -i redismod redis-cli -x RG.PYEXECUTE
+npm register:gears
 ```
 
-- Install Reader to complete orders
+## Install [ioredis](https://github.com/luin/ioredis) module and run simulation
+
+Script `pop-up-store.js` will add customers to stream `queue:customers` and their orders to `queue:orders`.
 
 ```
-cat gears/complete.py | docker exec -i redismod redis-cli -x RG.PYEXECUTE
+npm start:simulation
 ```
 
-## Simulation script
+## Redis-cli
 
-### Install [ioredis](https://github.com/luin/ioredis) module
-
-```
-npm i
-```
-
-### Run simulation
-
-Run `pop-up-store.js` script to add customers to stream `queue:customers` and their orders to `queue:orders`.
+To run `redis-cli` please run
 
 ```
-node pop-up-store.js
+npm redis-cli
 ```
