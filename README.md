@@ -1,7 +1,5 @@
 # Pop-up store demo using RedisTimeSeries, RedisGears and Grafana Redis Datasource
 
-![Dashboard](https://github.com/mikhailredis/redis-pop-up-store/blob/master/images/pop-up.png)
-
 <div id="badges" align="center">
 
 [![Grafana 7](https://img.shields.io/badge/Grafana-7-blue)](https://www.grafana.com)
@@ -14,6 +12,8 @@
 ## Description
 
 The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and Grafana with [Grafana Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize sale progress.
+
+![Pop-up](https://github.com/mikhailredis/redis-pop-up-store/blob/master/images/pop-up.gif)
 
 ## What is displayed on Grafana dashboard
 
@@ -92,7 +92,7 @@ npm start:simulation
 
 ## Redis-cli
 
-To run `redis-cli` please run
+To start `redis-cli` and look at the keys please run
 
 ```
 npm redis-cli
