@@ -19,8 +19,8 @@ The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-i
 
 ![Diagram](https://github.com/mikhailredis/redis-pop-up-store/blob/master/images/pop-up.png)
 
-- Node.js script add random data to Customers and Orders streams
-- RedisGears is using `StreamReader` watching all `queue:` keys and adding Time-Series samples
+- Node.js script adds random data to Customers and Orders streams
+- RedisGears is using `StreamReader` to watch all `queue:` keys and adding Time-Series samples
 
 ```
 # Add Time-Series
