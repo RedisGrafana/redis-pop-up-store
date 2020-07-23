@@ -99,6 +99,7 @@ Script `pop-up-store.js` will add customers to stream `queue:customers` and thei
 npm start:simulation
 ```
 
+## Open Grafana Dashboard using browser http://localhost:3000
 ## Redis-cli
 
 To start `redis-cli` and look at the keys please run
