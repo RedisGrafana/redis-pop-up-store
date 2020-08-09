@@ -1,4 +1,4 @@
-<h1 align="center">Pop-up store demo using RedisTimeSeries, RedisGears and Grafana Redis Datasource</h1>
+<h1 align="center">Pop-up store demo using RedisTimeSeries, RedisGears and Redis Datasource for Grafana</h1>
 
 <div id="badges" align="center">
 
