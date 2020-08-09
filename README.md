@@ -11,13 +11,13 @@
 
 ## Description
 
-The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and Grafana with [Grafana Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize sale progress.
+The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and Grafana with [Grafana Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize data pipeline.
 
-![Pop-up](https://github.com/mikhailredis/redis-pop-up-store/blob/master/images/pop-up.gif)
+![Pop-up](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up.gif)
 
 ## How it works
 
-![Diagram](https://github.com/mikhailredis/redis-pop-up-store/blob/master/images/pop-up.png)
+![Diagram](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up.png)
 
 - Node.js script adds random data to Customers and Orders streams
 - RedisGears is using `StreamReader` to watch all `queue:` keys and adding Time-Series samples
@@ -100,6 +100,7 @@ npm start:simulation
 ```
 
 ## Open Grafana Dashboard using browser http://localhost:3000
+
 ## Redis-cli
 
 To start `redis-cli` and look at the keys please run
