@@ -3,7 +3,7 @@
   "dependencies": {
     "ioredis": "^4.17.3"
   },
-  "description": "Pop-up store using RedisTimeSeries, RedisGears and Grafana Redis Datasource",
+  "description": "Pop-up store using RedisTimeSeries, RedisGears and Redis Datasource for Grafana",
   "license": "Apache-2.0",
   "name": "redis-pop-up-store",
   "scripts": {

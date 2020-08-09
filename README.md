@@ -11,7 +11,7 @@
 
 ## Description
 
-The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and Grafana with [Grafana Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize data pipeline.
+The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and [Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize data pipeline in Grafana.
 
 ![Pop-up](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up.gif)
 
