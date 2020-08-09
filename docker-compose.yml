@@ -21,8 +21,7 @@ services:
       - GF_AUTH_ANONYMOUS_ENABLED=true
       - GF_AUTH_BASIC_ENABLED=false
       - GF_ENABLE_GZIP=true
-      - GF_PLUGINS_ALLOW_LOADING_UNSIGNED_PLUGINS=grafana-redis-datasource
-      - GF_INSTALL_PLUGINS=https://grafana.cs.redislabs.com/grafana-redis-datasource-1.0.0.zip;grafana-redis-datasource
+      - GF_INSTALL_PLUGINS=redis-datasource
     volumes:
       - ./provisioning:/etc/grafana/provisioning
       - ./dashboards:/var/lib/grafana/dashboards
