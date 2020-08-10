@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "name": "redis-pop-up-store",
   "scripts": {
-    "start:simulation": "npm i; node pop-up-store.js",
+    "start:simulation": "npm i; node src/pop-up-store.js",
     "start:docker": "docker-compose up",
     "register:gears": "./gears-execute.sh && docker exec -it redismod redis-cli RG.DUMPREGISTRATIONS",
     "redis-cli": "docker exec -it redismod redis-cli"
