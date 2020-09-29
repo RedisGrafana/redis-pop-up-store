@@ -80,7 +80,7 @@ gb.register(prefix='queue:orders', batch=3, trimStream=True)
 For detailed instructions please take a look at [redismod - a Docker image with select Redis Labs modules](https://hub.docker.com/r/redislabs/redismod).
 
 ```
-npm start:docker
+npm run start:docker
 ```
 
 ## Register [StreamReaders](https://oss.redislabs.com/redisgears/readers.html#streamreader)
@@ -88,7 +88,7 @@ npm start:docker
 Install Readers to add Time-Series and complete orders
 
 ```
-npm register:gears
+npm run register:gears
 ```
 
 ## Install [ioredis](https://github.com/luin/ioredis) module and run simulation
@@ -96,7 +96,7 @@ npm register:gears
 Script `pop-up-store.js` will add customers to stream `queue:customers` and their orders to `queue:orders`.
 
 ```
-npm start:simulation
+npm run start:simulation
 ```
 
 ## Open Grafana Dashboard using browser http://localhost:3000
@@ -106,5 +106,5 @@ npm start:simulation
 To start `redis-cli` and look at the keys please run
 
 ```
-npm redis-cli
+npm run redis-cli
 ```
