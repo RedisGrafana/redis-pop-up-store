@@ -1,4 +1,40 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_REDIS",
+      "label": "Redis",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "redis-datasource",
+      "pluginName": "Redis"
+    }
+  ],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "7.5.2"
+    },
+    {
+      "type": "panel",
+      "id": "graph",
+      "name": "Graph",
+      "version": ""
+    },
+    {
+      "type": "datasource",
+      "id": "redis-datasource",
+      "name": "Redis",
+      "version": "1.4.0"
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -15,16 +51,13 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 3,
+  "id": null,
   "links": [],
   "panels": [
     {
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "noValue": "0",
           "thresholds": {
@@ -57,13 +90,15 @@
           "calcs": ["mean"],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.5",
+      "pluginVersion": "7.5.2",
       "targets": [
         {
           "command": "get",
-          "key": "product",
+          "keyName": "product",
           "query": "",
           "refId": "A",
           "type": "command"
@@ -75,12 +110,9 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -118,13 +150,15 @@
           "calcs": ["mean"],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.5",
+      "pluginVersion": "7.5.2",
       "targets": [
         {
           "command": "xlen",
-          "key": "queue:customers",
+          "keyName": "queue:customers",
           "query": "",
           "refId": "A",
           "type": "command"
@@ -136,12 +170,9 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -179,13 +210,15 @@
           "calcs": ["mean"],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.5",
+      "pluginVersion": "7.5.2",
       "targets": [
         {
           "command": "xlen",
-          "key": "queue:orders",
+          "keyName": "queue:orders",
           "query": "",
           "refId": "A",
           "type": "command"
@@ -197,12 +230,9 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {
-            "align": null
-          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -232,13 +262,15 @@
           "calcs": ["mean"],
           "fields": "",
           "values": false
-        }
+        },
+        "text": {},
+        "textMode": "auto"
       },
-      "pluginVersion": "7.0.5",
+      "pluginVersion": "7.5.2",
       "targets": [
         {
           "command": "xlen",
-          "key": "queue:complete",
+          "keyName": "queue:complete",
           "query": "",
           "refId": "A",
           "type": "command"
@@ -250,7 +282,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -266,10 +298,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -296,9 +328,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -309,9 +342,9 @@
       "targets": [
         {
           "aggregation": "",
-          "bucket": "5000",
+          "bucket": 5000,
           "command": "ts.range",
-          "key": "ts:enqueue:queue:customers",
+          "keyName": "ts:enqueue:queue:customers",
           "legend": "Customers",
           "query": "",
           "refId": "A",
@@ -365,10 +398,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -395,9 +428,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -408,7 +442,7 @@
       "targets": [
         {
           "command": "ts.range",
-          "key": "ts:len:queue:customers",
+          "keyName": "ts:len:queue:customers",
           "legend": "Customers",
           "query": "",
           "refId": "A",
@@ -458,7 +492,7 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -474,10 +508,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -504,9 +538,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -517,7 +552,7 @@
       "targets": [
         {
           "command": "ts.range",
-          "key": "ts:len:queue:orders",
+          "keyName": "ts:len:queue:orders",
           "legend": "Orders",
           "query": "",
           "refId": "A",
@@ -571,10 +606,10 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "${DS_REDIS}",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -601,9 +636,10 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "7.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -614,7 +650,7 @@
       "targets": [
         {
           "command": "ts.range",
-          "key": "ts:enqueue:queue:complete",
+          "keyName": "ts:enqueue:queue:complete",
           "legend": "Orders",
           "query": "",
           "refId": "A",
@@ -664,8 +700,8 @@
       }
     }
   ],
-  "refresh": "5s",
-  "schemaVersion": 25,
+  "refresh": "10s",
+  "schemaVersion": 27,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -691,5 +727,5 @@
   "timezone": "",
   "title": "Pop-up",
   "uid": "0LC0Sm7Mk",
-  "version": 35
+  "version": 4
 }
