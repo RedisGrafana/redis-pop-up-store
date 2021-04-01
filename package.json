@@ -13,5 +13,5 @@
     "register:gears": "./gears-execute.sh && docker exec -it redismod redis-cli RG.DUMPREGISTRATIONS",
     "redis-cli": "docker exec -it redismod redis-cli"
   },
-  "version": "1.0.0"
+  "version": "1.1.0"
 }

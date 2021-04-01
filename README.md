@@ -1,19 +1,12 @@
-<h1 align="center">Pop-up store demo using RedisTimeSeries, RedisGears and Redis Data Source for Grafana</h1>
-
-<div id="badges" align="center">
-
-[![Grafana 7](https://img.shields.io/badge/Grafana-7-blue)](https://www.grafana.com)
-[![RedisTimeSeries](https://img.shields.io/badge/RedisTimeSeries-inspired-yellowgreen)](https://oss.redislabs.com/redistimeseries/)
-[![RedisGears](https://img.shields.io/badge/RedisGears-powered-orange)](https://oss.redislabs.com/redisgears/)
-[![Grafana-Redis-Datasource](https://img.shields.io/badge/GrafanaRedisDatasource-integrated-yellow)](https://github.com/RedisTimeSeries/grafana-redis-datasource)
-
-</div>
-
-## Description
-
-The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and [Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize data pipeline in Grafana.
+# Pop-up store demo using RedisTimeSeries, RedisGears and Redis Data Source for Grafana</h1>
 
 ![Pop-up](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up.gif)
+
+[![Grafana 7](https://img.shields.io/badge/Grafana-7-orange)](https://www.grafana.com)
+[![RedisTimeSeries](https://img.shields.io/badge/RedisTimeSeries-inspired-yellowgreen)](https://oss.redislabs.com/redistimeseries/)
+[![RedisGears](https://img.shields.io/badge/RedisGears-powered-green)](https://oss.redislabs.com/redisgears/) [![Redis Data Source](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Data%20Source&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-datasource)](https://grafana.com/grafana/plugins/redis-datasource) [![Redis Application](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Data%20Source&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-app)](https://grafana.com/grafana/plugins/redis-app)
+
+The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and [Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize data pipeline in Grafana.
 
 ## How it works
 
