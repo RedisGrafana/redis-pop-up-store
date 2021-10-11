@@ -1,12 +1,11 @@
-# Pop-up store demo using RedisTimeSeries, RedisGears and Redis Data Source for Grafana</h1>
+# Pop-up store demo using RedisTimeSeries, RedisGears and Redis plugins for Grafana</h1>
 
 ![Pop-up](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up.gif)
 
-[![Grafana 7](https://img.shields.io/badge/Grafana-7-orange)](https://www.grafana.com)
-[![RedisTimeSeries](https://img.shields.io/badge/RedisTimeSeries-inspired-yellowgreen)](https://oss.redislabs.com/redistimeseries/)
-[![RedisGears](https://img.shields.io/badge/RedisGears-powered-green)](https://oss.redislabs.com/redisgears/) [![Redis Data Source](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Data%20Source&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-datasource)](https://grafana.com/grafana/plugins/redis-datasource) [![Redis Application](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Data%20Source&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-app)](https://grafana.com/grafana/plugins/redis-app)
+[![Grafana 8](https://img.shields.io/badge/Grafana-8-orange)](https://www.grafana.com)
+[![Redis Data Source](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Data%20Source&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-datasource)](https://grafana.com/grafana/plugins/redis-datasource) [![Redis Application](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Application&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-app)](https://grafana.com/grafana/plugins/redis-app)
 
-The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redislabs.com/redistimeseries/), [RedisGears](https://oss.redislabs.com/redisgears/) and [Redis Datasource](https://github.com/RedisTimeSeries/grafana-redis-datasource) to visualize data pipeline in Grafana.
+The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redis.com/redistimeseries/), [RedisGears](https://oss.redis.com/redisgears/) and [Redis plugins](https://redisgrafana.github.io) to visualize data pipeline in Grafana.
 
 ## How it works
 
@@ -50,7 +49,7 @@ gb.map(complete)
 gb.register(prefix='queue:orders', batch=3, trimStream=True)
 ```
 
-- Grafana query streams and Time-Series keys every 5 seconds to display samples using Grafana Redis Datasource.
+- Grafana query streams and Time-Series keys every 5 seconds to display samples using Grafana plugins.
 
 ## What is displayed on Grafana dashboard
 
@@ -70,18 +69,16 @@ gb.register(prefix='queue:orders', batch=3, trimStream=True)
 
 ## Start Redis with RedisTimeSeries and RedisGears modules installed and Grafana
 
-For detailed instructions please take a look at [redismod - a Docker image with select Redis Labs modules](https://hub.docker.com/r/redislabs/redismod).
-
 ```
-npm run start:docker
+npm run start
 ```
 
-## Register [StreamReaders](https://oss.redislabs.com/redisgears/readers.html#streamreader)
+## Register [StreamReaders](https://oss.redis.com/redisgears/readers.html#streamreader)
 
 Install Readers to add Time-Series and complete orders
 
 ```
-npm run register:gears
+npm run register
 ```
 
 ## Install [ioredis](https://github.com/luin/ioredis) module and run simulation
@@ -89,10 +86,12 @@ npm run register:gears
 Script `pop-up-store.js` will add customers to stream `queue:customers` and their orders to `queue:orders`.
 
 ```
-npm run start:simulation
+npm run simulation
 ```
 
-## Open Grafana Dashboard using browser http://localhost:3000
+## Grafana Dashboards
+
+Open Grafana Dashboard using browser http://localhost:3000
 
 ## Redis-cli
 

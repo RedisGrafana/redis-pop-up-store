@@ -2,18 +2,14 @@ version: "3.4"
 
 services:
   redis:
-    container_name: redismod
-    image: redislabs/redismod:latest
+    container_name: redis
+    image: ghcr.io/redisgrafana/redis-prophet:latest
     ports:
       - "6379:6379"
-    # Uncomment and edit the local path in the following line to have
-    # Redis' data persisted to the host's filesystem.
-    # volumes:
-    #   - ./dump.rdb:/data/dump.rdb
 
   grafana:
     container_name: grafana
-    image: grafana/grafana:latest
+    image: ghcr.io/redisgrafana/redis-app:latest
     ports:
       - "3000:3000"
     environment:
@@ -22,9 +18,5 @@ services:
       - GF_AUTH_BASIC_ENABLED=false
       - GF_ENABLE_GZIP=true
       - GF_USERS_DEFAULT_THEME=light
-      - GF_INSTALL_PLUGINS=redis-app
     volumes:
       - ./provisioning:/etc/grafana/provisioning
-      - ./dashboards:/var/lib/grafana/dashboards
-      # Uncomment to preserve Grafana configuration
-      # - ./data:/var/lib/grafana
