@@ -9,7 +9,7 @@
   "name": "redis-pop-up-store",
   "scripts": {
     "redis-cli": "docker exec -it redis redis-cli",
-    "register": "./gears-execute.sh && docker exec -it redis redis-cli RG.DUMPREGISTRATIONS",
+    "register": "./register.sh && docker exec -it redis redis-cli RG.DUMPREGISTRATIONS",
     "simulation": "npm i; node src/pop-up-store.js",
     "start": "docker-compose pull && docker-compose up",
     "stop": "docker-compose down",
