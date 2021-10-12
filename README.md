@@ -1,11 +1,11 @@
 # Pop-up store demo using RedisTimeSeries, RedisGears and Redis plugins for Grafana</h1>
 
-![Pop-up](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up.gif)
+![Pop-up](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up-dashboard.png)
 
 [![Grafana 8](https://img.shields.io/badge/Grafana-8-orange)](https://www.grafana.com)
 [![Redis Data Source](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Data%20Source&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-datasource)](https://grafana.com/grafana/plugins/redis-datasource) [![Redis Application](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Application&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-app)](https://grafana.com/grafana/plugins/redis-app)
 
-The Pop-up store demo is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redis.com/redistimeseries/), [RedisGears](https://oss.redis.com/redisgears/) and [Redis plugins](https://redisgrafana.github.io) to visualize data pipeline in Grafana.
+The Pop-up store is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redis.com/redistimeseries/), [RedisGears](https://oss.redis.com/redisgears/) and [Redis plugins](https://redisgrafana.github.io) to visualize data pipeline in Grafana.
 
 ## How it works
 
@@ -51,29 +51,25 @@ gb.register(prefix='queue:orders', batch=3, trimStream=True)
 
 - Grafana query streams and Time-Series keys every 5 seconds to display samples using Grafana plugins.
 
-## What is displayed on Grafana dashboard
+## Demo
 
-- `Product Available` - the value of `product` key
-- `Customers Ordering` - length of `queue:customers`
-- `Orders Processing` - length of `queue:orders`
-- `Orders Completed` - length of `queue:complete`
-- `Customers Overflow` - the difference between customer submitted orders and orders completed
-- `Customers Ordering` - change of `queue:customers` length
-- `Orders In Queue` - change of `queue:orders` length
-- `Completed Flow` - how many orders processed
+Demo is available on [demo.volkovlabs.io](https://demo.volkovlabs.io):
+
+- [Redis Overview dashboard](https://demo.volkovlabs.io/d/TgibHBv7z/redis-overview?orgId=1&refresh=1h)
+- [Pop-up Store dashboard](https://demo.volkovlabs.io/d/0LC0Sm7Ml/pop-up-store?orgId=1)
 
 ## Requirements
 
 - [Docker](https://docker.com) to start Redis and Grafana.
 - [Node.js](https://nodejs.org) to run simulation script.
 
-## Start Redis with RedisTimeSeries and RedisGears modules installed and Grafana
+## Start Redis with RedisTimeSeries, RedisGears modules installed and Grafana
 
 ```
 npm run start
 ```
 
-## Register [StreamReaders](https://oss.redis.com/redisgears/readers.html#streamreader)
+## Register RedisGears functions
 
 Install Readers to add Time-Series and complete orders
 
@@ -81,9 +77,9 @@ Install Readers to add Time-Series and complete orders
 npm run register
 ```
 
-## Install [ioredis](https://github.com/luin/ioredis) module and run simulation
+## Install [ioredis](https://github.com/luin/ioredis) module and start simulation
 
-Script `pop-up-store.js` will add customers to stream `queue:customers` and their orders to `queue:orders`.
+Script `pop-up-store.js` will add customers to stream `queue:customers` and their orders to the `orders` keys.
 
 ```
 npm run simulation

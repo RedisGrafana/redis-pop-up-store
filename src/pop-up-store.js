@@ -35,12 +35,12 @@ function submitOrder(err, result) {
   }
 
   /**
-   * Waiting to customer to submit order
+   * Waiting for customer to submit order
    *
    * @see https://redis.io/commands/xadd
    */
   setTimeout(function () {
-    redis.xadd("queue:orders", "*", "id", genId(), "customer", result);
+    redis.xadd("orders", "*", "id", genId(), "customer", result);
   }, Math.floor(Math.random() * 1000));
 }
 
@@ -54,9 +54,9 @@ function newCustomer() {
   redis.xadd("queue:customers", "*", "id", genId(), submitOrder);
 
   /**
-   * Waiting for next
+   * Waiting for the next
    */
-  setTimeout(newCustomer, Math.floor(Math.random() * 100));
+  setTimeout(newCustomer, Math.floor(Math.random() * 1000));
 }
 
 /**
