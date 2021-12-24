@@ -1,9 +1,15 @@
 version: "3.4"
 
 services:
+  app:
+    build: .
+    image: ghcr.io/redisgrafana/pop-up-store:latest
+    depends_on:
+      - redis
+
   redis:
     container_name: redis
-    image: ghcr.io/redisgrafana/redis-prophet:latest
+    image: redislabs/redismod
     ports:
       - "6379:6379"
 

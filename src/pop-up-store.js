@@ -8,7 +8,7 @@ const Redis = require("ioredis");
 /**
  * You can also specify connection options as a redis:// URL or rediss:// URL when using TLS encryption:
  */
-const redis = new Redis("redis://localhost:6379");
+const redis = new Redis(getRedisURI());
 
 /**
  * There are 10000 products on sale today
@@ -17,6 +17,18 @@ const redis = new Redis("redis://localhost:6379");
  */
 const product = 10000;
 redis.set("product", product);
+
+/**
+ * Get Redis host from first argument (optional)
+ * argv is: [ '/usr/local/bin/node', '/app/src/pop-up-store.js', '...' ]
+ */
+function getRedisURI() {
+  if (process.argv.length > 2) {
+    return "redis://"+process.argv[2]+":6379";
+  } else {
+    return "redis://localhost:6379";
+  }
+}
 
 /**
  * Generate Id
@@ -62,4 +74,5 @@ function newCustomer() {
 /**
  * Sale started
  */
+console.log("Now running simulation...")
 newCustomer();
