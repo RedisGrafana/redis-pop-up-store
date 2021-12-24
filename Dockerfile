@@ -1,11 +1,19 @@
 FROM node
 WORKDIR /app
-COPY package.json .
-RUN npm install --quiet
 
+# Install depenencies
+COPY package.json .
+COPY yarn.lock .
+RUN yarn install
+
+# Install Redis tools
 RUN apt update
 RUN apt install -y redis-tools
 
-COPY . .
+# Copy Gears and application
+COPY gears ./gears
+COPY src ./src
+COPY ./docker-cmd.sh .
 
-CMD [ "./register-run-cli.sh" ]
+# Run
+CMD [ "./docker-cmd.sh" ]

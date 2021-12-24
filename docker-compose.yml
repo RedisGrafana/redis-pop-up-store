@@ -2,20 +2,20 @@ version: "3.4"
 
 services:
 
-  node:
+  app:
     build: .
-    image: redis-pop-up-store-node
+    image: pop-up-store-app
     depends_on:
       - redis
 
   redis:
-    container_name: pop-redis
+    container_name: redis
     image: redislabs/redismod
     ports:
       - "6379:6379"
 
   grafana:
-    container_name: pop-grafana
+    container_name: grafana
     image: ghcr.io/redisgrafana/redis-app:latest
     ports:
       - "3000:3000"
@@ -27,15 +27,3 @@ services:
       - GF_USERS_DEFAULT_THEME=light
     volumes:
       - ./provisioning:/etc/grafana/provisioning
-
-  ri:
-    image: redislabs/redisinsight
-    volumes:
-      - pop-ri:/db
-    ports:
-      - "8001:8001"
-    links:
-      - redis:redis
-
-volumes:
-  pop-ri: {}
