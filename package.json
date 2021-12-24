@@ -1,13 +1,14 @@
 {
   "author": "Mikhail Volkov",
   "dependencies": {
-    "ioredis": "^4.17.3",
+    "ioredis": "^4.28.2",
     "lodash": "^4.17.21"
   },
   "description": "Pop-up store using RedisTimeSeries, RedisGears and Redis Datasource for Grafana",
   "license": "Apache-2.0",
   "name": "redis-pop-up-store",
   "scripts": {
+    "docker:build": "docker-compose build",
     "redis-cli": "docker exec -it redis redis-cli",
     "register": "./register.sh && docker exec -it redis redis-cli RG.DUMPREGISTRATIONS",
     "simulation": "npm i; node src/pop-up-store.js",
@@ -15,5 +16,5 @@
     "stop": "docker-compose down",
     "upgrade": "yarn upgrade --latest"
   },
-  "version": "2.0.0"
+  "version": "2.1.0"
 }
