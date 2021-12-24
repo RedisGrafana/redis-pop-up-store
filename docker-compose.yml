@@ -1,10 +1,9 @@
 version: "3.4"
 
 services:
-
   app:
     build: .
-    image: pop-up-store-app
+    image: ghcr.io/redisgrafana/pop-up-store:latest
     depends_on:
       - redis
 
