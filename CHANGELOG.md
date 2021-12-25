@@ -1,5 +1,13 @@
 # Change Log
 
+## 2.1.0 (2021-12-25)
+
+### Features / Enhancements
+
+- Add Docker container for the Demo Application (#11)
+- Add Docker workflow (#12)
+- Update dashboards (#13)
+
 ## 2.0.0 (2021-10-11)
 
 ### Features / Enhancements

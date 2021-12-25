@@ -1,6 +1,6 @@
 # Pop-up store demo using RedisTimeSeries, RedisGears and Redis plugins for Grafana</h1>
 
-![Pop-up](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up-dashboard.png)
+![Pop-up](https://github.com/RedisGrafana/redis-pop-up-store/blob/master/images/pop-up-dashboard.png)
 
 [![Grafana 8](https://img.shields.io/badge/Grafana-8-orange)](https://www.grafana.com)
 [![Redis Data Source](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Data%20Source&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-datasource)](https://grafana.com/grafana/plugins/redis-datasource) [![Redis Application](https://img.shields.io/badge/dynamic/json?color=blue&label=Redis%20Application&query=%24.version&url=https%3A%2F%2Fgrafana.com%2Fapi%2Fplugins%2Fredis-app)](https://grafana.com/grafana/plugins/redis-app)
@@ -9,7 +9,7 @@
 
 The Pop-up store is using [Redis Streams](https://redis.io/topics/streams-intro), [RedisTimeSeries](https://oss.redis.com/redistimeseries/), [RedisGears](https://oss.redis.com/redisgears/) and [Redis plugins](https://redisgrafana.github.io) to visualize data pipeline in Grafana.
 
-![Diagram](https://github.com/RedisTimeSeries/redis-pop-up-store/blob/master/images/pop-up.png)
+![Diagram](https://github.com/RedisGrafana/redis-pop-up-store/blob/master/images/pop-up.png)
 
 - Node.js script adds random data to Customers and Orders streams
 - RedisGears is using `StreamReader` to watch all `queue:` keys and adding Time-Series samples
