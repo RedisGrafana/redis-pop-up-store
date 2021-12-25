@@ -1,5 +1,6 @@
 {
   "__inputs": [],
+  "__elements": [],
   "__requires": [
     {
       "type": "panel",
@@ -11,13 +12,19 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "8.2.1"
+      "version": "8.3.3"
+    },
+    {
+      "type": "panel",
+      "id": "redis-cpu-panel",
+      "name": "Redis CPU Usage",
+      "version": ""
     },
     {
       "type": "datasource",
       "id": "redis-datasource",
       "name": "Redis",
-      "version": "1.5.0"
+      "version": "2.1.0"
     },
     {
       "type": "panel",
@@ -65,15 +72,16 @@
   },
   "editable": true,
   "fiscalYearStartMonth": 0,
-  "gnetId": null,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1634046481196,
+  "iteration": 1640405314558,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": "$redis",
+      "datasource": {
+        "uid": "$redis"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -121,7 +129,7 @@
         "showThresholdMarkers": true,
         "text": {}
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "command": "get",
@@ -133,13 +141,13 @@
           "type": "command"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Product Available",
       "type": "gauge"
     },
     {
-      "datasource": "$redis",
+      "datasource": {
+        "uid": "$redis"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -223,13 +231,13 @@
           "type": "command"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Customers Ordering",
       "type": "timeseries"
     },
     {
-      "datasource": "$redis",
+      "datasource": {
+        "uid": "$redis"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -314,13 +322,13 @@
           "type": "timeSeries"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Customers Overflow",
       "type": "timeseries"
     },
     {
-      "datasource": "$redis",
+      "datasource": {
+        "uid": "$redis"
+      },
       "fieldConfig": {
         "defaults": {
           "decimals": 0,
@@ -358,7 +366,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "command": "xlen",
@@ -370,13 +378,13 @@
           "type": "command"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Orders Completed",
       "type": "stat"
     },
     {
-      "datasource": "$redis",
+      "datasource": {
+        "uid": "$redis"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -388,7 +396,9 @@
       "type": "row"
     },
     {
-      "datasource": "$redis",
+      "datasource": {
+        "uid": "$redis"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -473,13 +483,13 @@
           "type": "command"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "In Queue",
       "type": "timeseries"
     },
     {
-      "datasource": "$redis",
+      "datasource": {
+        "uid": "$redis"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -564,14 +574,11 @@
           "type": "timeSeries"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Completed Flow",
       "type": "timeseries"
     },
     {
       "collapsed": false,
-      "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -584,11 +591,267 @@
       "type": "row"
     },
     {
-      "datasource": "$redis",
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 0,
+        "y": 18
+      },
+      "id": 31,
+      "options": {
+        "interval": 1000,
+        "maxItemsPerSeries": 300
+      },
+      "title": "CPU Usage",
+      "type": "redis-cpu-panel"
+    },
+    {
+      "datasource": {
+        "uid": "$redis"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 51,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ops"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 18
+      },
+      "id": 25,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "hidden",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "8.0.0",
+      "targets": [
+        {
+          "command": "info",
+          "query": "",
+          "refId": "A",
+          "section": "stats",
+          "streaming": true,
+          "streamingCapacity": 1000,
+          "streamingInterval": 1000,
+          "type": "command"
+        }
+      ],
+      "title": "Ops/sec",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": ["instantaneous_ops_per_sec", "#time"]
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "$redis"
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "id": 29,
+      "options": {
+        "hideZero": true,
+        "interval": 1000,
+        "maxItemsPerSeries": 300,
+        "viewMode": "Graph"
+      },
+      "pluginVersion": "7.3.7",
+      "title": "Latency",
+      "type": "redis-latency-panel"
+    },
+    {
+      "datasource": {
+        "uid": "$redis"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 52,
+            "gradientMode": "opacity",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "decbytes"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "id": 27,
+      "options": {
+        "legend": {
+          "calcs": ["mean", "lastNotNull"],
+          "displayMode": "table",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi"
+        }
+      },
+      "pluginVersion": "8.0.0",
+      "targets": [
+        {
+          "command": "info",
+          "query": "",
+          "refId": "A",
+          "section": "memory",
+          "streaming": true,
+          "streamingCapacity": 1000,
+          "streamingInterval": 1000,
+          "type": "command"
+        }
+      ],
+      "title": "Memory Usage",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "used_memory",
+                "used_memory_rss",
+                "used_memory_peak",
+                "total_system_memory",
+                "used_memory_lua",
+                "maxmemory",
+                "#time"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "maxmemory": "Memory Limit",
+              "total_system_memory": "Total System Memory",
+              "used_memory": "Used Memory",
+              "used_memory_lua": "Used Memory, LUA",
+              "used_memory_peak": "Used Memory, Peak",
+              "used_memory_rss": "Used Memory, RSS"
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "uid": "$redis"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
-            "align": null,
             "displayMode": "auto",
             "filterable": false
           },
@@ -683,8 +946,7 @@
             },
             "properties": [
               {
-                "id": "custom.width",
-                "value": null
+                "id": "custom.width"
               }
             ]
           },
@@ -727,17 +989,22 @@
         ]
       },
       "gridPos": {
-        "h": 9,
-        "w": 12,
+        "h": 5,
+        "w": 24,
         "x": 0,
-        "y": 18
+        "y": 37
       },
       "id": 21,
       "options": {
+        "footer": {
+          "fields": "",
+          "reducer": ["sum"],
+          "show": false
+        },
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "8.2.1",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "command": "rg.dumpregistrations",
@@ -748,8 +1015,6 @@
           "type": "gears"
         }
       ],
-      "timeFrom": null,
-      "timeShift": null,
       "title": "Registrations",
       "transformations": [
         {
@@ -789,250 +1054,10 @@
         }
       ],
       "type": "table"
-    },
-    {
-      "datasource": "$redis",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 51,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "ops"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 9,
-        "w": 12,
-        "x": 12,
-        "y": 18
-      },
-      "id": 25,
-      "options": {
-        "legend": {
-          "calcs": [],
-          "displayMode": "hidden",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi"
-        }
-      },
-      "pluginVersion": "8.0.0",
-      "targets": [
-        {
-          "command": "info",
-          "query": "",
-          "refId": "A",
-          "section": "stats",
-          "streaming": true,
-          "streamingCapacity": 1000,
-          "streamingInterval": 1000,
-          "type": "command"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Ops/sec",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": ["instantaneous_ops_per_sec", "#time"]
-            }
-          }
-        }
-      ],
-      "type": "timeseries"
-    },
-    {
-      "datasource": "$redis",
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 0,
-        "y": 27
-      },
-      "id": 29,
-      "options": {
-        "hideZero": true,
-        "interval": 1000,
-        "maxItemsPerSeries": 300,
-        "viewMode": "Graph"
-      },
-      "pluginVersion": "7.3.7",
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Latency",
-      "type": "redis-latency-panel"
-    },
-    {
-      "datasource": "$redis",
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          },
-          "custom": {
-            "axisLabel": "",
-            "axisPlacement": "auto",
-            "barAlignment": 0,
-            "drawStyle": "line",
-            "fillOpacity": 52,
-            "gradientMode": "opacity",
-            "hideFrom": {
-              "legend": false,
-              "tooltip": false,
-              "viz": false
-            },
-            "lineInterpolation": "linear",
-            "lineWidth": 1,
-            "pointSize": 5,
-            "scaleDistribution": {
-              "type": "linear"
-            },
-            "showPoints": "never",
-            "spanNulls": true,
-            "stacking": {
-              "group": "A",
-              "mode": "none"
-            },
-            "thresholdsStyle": {
-              "mode": "off"
-            }
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "decbytes"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 10,
-        "w": 12,
-        "x": 12,
-        "y": 27
-      },
-      "id": 27,
-      "options": {
-        "legend": {
-          "calcs": ["mean", "lastNotNull"],
-          "displayMode": "table",
-          "placement": "bottom"
-        },
-        "tooltip": {
-          "mode": "multi"
-        }
-      },
-      "pluginVersion": "8.0.0",
-      "targets": [
-        {
-          "command": "info",
-          "query": "",
-          "refId": "A",
-          "section": "memory",
-          "streaming": true,
-          "streamingCapacity": 1000,
-          "streamingInterval": 1000,
-          "type": "command"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Memory Usage",
-      "transformations": [
-        {
-          "id": "filterFieldsByName",
-          "options": {
-            "include": {
-              "names": [
-                "used_memory",
-                "used_memory_rss",
-                "used_memory_peak",
-                "total_system_memory",
-                "used_memory_lua",
-                "maxmemory",
-                "#time"
-              ]
-            }
-          }
-        },
-        {
-          "id": "organize",
-          "options": {
-            "excludeByName": {},
-            "indexByName": {},
-            "renameByName": {
-              "maxmemory": "Memory Limit",
-              "total_system_memory": "Total System Memory",
-              "used_memory": "Used Memory",
-              "used_memory_lua": "Used Memory, LUA",
-              "used_memory_peak": "Used Memory, Peak",
-              "used_memory_rss": "Used Memory, RSS"
-            }
-          }
-        }
-      ],
-      "type": "timeseries"
     }
   ],
   "refresh": false,
-  "schemaVersion": 31,
+  "schemaVersion": 34,
   "style": "dark",
   "tags": [],
   "templating": {
@@ -1043,8 +1068,6 @@
           "text": "Redis",
           "value": "Redis"
         },
-        "description": null,
-        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Redis",
@@ -1080,5 +1103,6 @@
   "timezone": "",
   "title": "Pop-up Store",
   "uid": "0LC0Sm7Ml",
-  "version": 1
+  "version": 1,
+  "weekStart": ""
 }
