@@ -13,42 +13,11 @@ The Pop-up store is using [Redis Streams](https://redis.io/topics/streams-intro)
 
 - Node.js script adds random data to Customers and Orders streams
 - RedisGears is using `StreamReader` to watch all `queue:` keys and adding Time-Series samples
-
-```
-# Add Time-Series
-def tsAdd(x):
-   xlen = execute('XLEN', x['key'])
-   execute('TS.ADD', 'ts:len:'+x['key'], '*', xlen)
-   execute('TS.ADD', 'ts:enqueue:' + x['key'], '*', x['value'])
-
-
-# Stream Reader for any Queue
-gb = GearsBuilder('StreamReader')
-gb.countby(lambda x: x['key']).map(tsAdd)
-gb.register(prefix='queue:*', duration=5000, batch=10000, trimStream=False)
-```
-
 - Another RedisGears script completes orders
   - adding data to `queue:complete` stream
   - deleting client's ordering
   - decreasing product amount
   - trimming Orders queue
-
-```
-# Complete order
-def complete(x):
-    execute('XADD', 'queue:complete', '*', 'order', x['id'],
-            'customer', x['value']['customer'])
-    execute('XDEL', 'queue:customers', x['value']['customer'])
-    execute('DECR', 'product')
-
-
-# Stream Reader for Orders queue
-gb = GearsBuilder('StreamReader')
-gb.map(complete)
-gb.register(prefix='queue:orders', batch=3, trimStream=True)
-```
-
 - Grafana query streams and Time-Series keys every 5 seconds to display samples using Grafana plugins.
 
 ## Demo
@@ -63,26 +32,10 @@ Demo is available on [demo.volkovlabs.io](https://demo.volkovlabs.io):
 - [Docker](https://docker.com) to start Redis and Grafana.
 - [Node.js](https://nodejs.org) to run simulation script.
 
-## Start Redis with RedisTimeSeries, RedisGears modules installed and Grafana
+## Start Redis, Grafana and Application simulation
 
 ```
 npm run start
-```
-
-## Register RedisGears functions
-
-Install Readers to add Time-Series and complete orders
-
-```
-npm run register
-```
-
-## Install [ioredis](https://github.com/luin/ioredis) module and start simulation
-
-Script `pop-up-store.js` will add customers to stream `queue:customers` and their orders to the `orders` keys.
-
-```
-npm run simulation
 ```
 
 ## Grafana Dashboards
