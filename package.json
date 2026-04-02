@@ -2,7 +2,7 @@
   "author": "Mikhail Volkov",
   "dependencies": {
     "ioredis": "^4.28.2",
-    "lodash": "^4.17.21"
+    "lodash": "^4.18.1"
   },
   "description": "Pop-up store using RedisTimeSeries, RedisGears and Redis plugins for Grafana",
   "license": "Apache-2.0",
